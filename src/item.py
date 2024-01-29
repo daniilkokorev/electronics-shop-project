@@ -61,5 +61,12 @@ class Item:
     @staticmethod
     # возвращающий число из строки
     def string_to_number(str_number):
-        number = float(str_number)
-        return int(number)
+        return int(float(str_number))
+
+    def __repr__(self):
+        # метод выводит имя класса и объекты класса для разработчика
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        # метод выводит объект класса для пользователя
+        return str(self.name)
