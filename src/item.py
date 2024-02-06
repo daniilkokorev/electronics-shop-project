@@ -29,11 +29,12 @@ class Item:
         """
         return self.price * self.quantity
 
-    def apply_discount(self) -> None:
+    def apply_discount(self) -> float:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        self.price *= self.pay_rate
+        self.price = self.price * self.pay_rate
+        return self.price
 
     @property
     # добавит геттер атрибутa `name`
@@ -70,3 +71,10 @@ class Item:
     def __str__(self):
         # метод выводит объект класса для пользователя
         return str(self.name)
+
+    def __add__(self, other):
+        # складывает количество телефонов в наличии
+        if not isinstance(other, Item):
+            raise TypeError
+        else:
+            return self.quantity + other.quantity

@@ -15,8 +15,8 @@ def test_calculate_total_price(item1):
 
 def test_apply_discount(item1):
     """Тест проверяет стоимоть товара со скидкой"""
-    item1.pay_rate = 0.8
-    assert item1.price * item1.pay_rate == 8000.0
+    Item.pay_rate = 0.8
+    assert Item.apply_discount(item1) == 8000.0
 
 
 def test_instantiate_from_csv(item1):
@@ -41,8 +41,17 @@ def test_string_to_number(item1):
 
 
 def test_repr_metod(item1):
+    # проверяет вывод метода информации для программиста
     assert repr(item1) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str_metod(item1):
+    # проверяет вывод метода вывода информации для пользователя
     assert str(item1) == 'Смартфон'
+
+
+def test_add_metod(item1):
+    #  проверяет метод сложения количества телефонов
+    assert item1 + item1 == 40
+    with pytest.raises(TypeError):
+        item1 + 20
