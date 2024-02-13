@@ -1,5 +1,6 @@
 from config import ITEMS
 from src.item import Item
+from src.item import InstantiateCSVError
 import pytest
 
 
@@ -55,3 +56,13 @@ def test_add_metod(item1):
     assert item1 + item1 == 40
     with pytest.raises(TypeError):
         item1 + 20
+
+def test_file_not_found():
+    #
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('/src/items.csv')
+
+def test_instantiate_csv():
+    #
+    with pytest.raises(KeyError):
+        Item.instantiate_from_csv('../src/err_items.csv')
